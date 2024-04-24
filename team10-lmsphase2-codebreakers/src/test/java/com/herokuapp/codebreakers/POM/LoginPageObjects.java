@@ -7,7 +7,7 @@ public class LoginPageObjects {
 
 	WebDriver driver;
 	
-	public LoginPageObjects() {
+	public LoginPageObjects(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}

@@ -7,7 +7,7 @@ public class DashBoardObjects {
 
 WebDriver driver;
 	
-	public DashBoardObjects() {
+	public DashBoardObjects(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
