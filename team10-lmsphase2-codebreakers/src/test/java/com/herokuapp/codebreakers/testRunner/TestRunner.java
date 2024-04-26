@@ -9,10 +9,10 @@ import io.cucumber.testng.CucumberOptions;
 
 			features = "src/test/resources/features/",
 			glue = {"com.herokuapp.codebreakers.stepDefinition","com.herokuapp.codebreakers.hooks"},
-			monochrome = true,
-			plugin = {"pretty", "html:target/cucumber.html","json:target/cucumber.json",
-	       		       "pretty","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
-			           "pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
+			monochrome = true
+//			plugin = {"pretty", "html:target/cucumber.html","json:target/cucumber.json",
+//	       		       "pretty","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
+//			           "pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 			)
 
 	public class TestRunner extends AbstractTestNGCucumberTests{
