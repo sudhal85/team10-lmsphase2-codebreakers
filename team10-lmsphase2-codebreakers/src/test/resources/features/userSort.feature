@@ -1,4 +1,4 @@
-Feature: Navigation to 'Manage User' and validating its functionality 
+Feature: Navigation to 'Manage User' and validating its sorting functionality 
 As a Admin
 I want to able to navigate to the 'Manage User' page 
 So that I can access its sorting, deleting, and assigning functionalities
