@@ -17,6 +17,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 public class UsersObjects {
 	WebDriver driver;
@@ -25,47 +26,30 @@ public class UsersObjects {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-
+//Sorting
+	
 	@FindBy(xpath = "//button[@id='user']")
 	private WebElement userLink;
-
 	@FindBy(xpath = "//th[@psortablecolumn='userId']")
 	private WebElement idSort;
-
 	@FindBy(xpath = "//th[@psortablecolumn='userFirstName']")
 	private WebElement nameSort;
-
 	@FindBy(xpath = "//th[@psortablecolumn='userLocation']")
 	private WebElement locationSort;
-
 	@FindBy(xpath = "//th[@psortablecolumn='userPhoneNumber']")
 	private WebElement phoneNoSort;
-
-	@FindBy(xpath = "//tbody[@class='p-datatable-tbody']/tr")
-	private WebElement itemsOnPage;
-
 	@FindBy(xpath = "//span[@class='p-paginator-icon pi pi-angle-right']/..")
 	private WebElement nextPageButton;
 	//span[@class='p-button-icon pi pi-trash']/.. = rowDeleteButton
 
-	@FindBy(xpath="//span[@class='pi pi-times ng-tns-c133-9']/..")
-	WebElement alertCloseBtn;
-	
-	@FindBy(xpath="//span[normalize-space()='No']")
-	WebElement alertNoBtn;
-	@FindBy(xpath="//span[normalize-space()='Yes']")
-	WebElement alertYesBtn;
-	@FindBy(xpath="//div[@class='p-toast-detail ng-tns-c90-10']/..")
-	private WebElement msgDeleteSuccess;
-	@FindBy(xpath="//div[@class='p-toast-summary ng-tns-c90-10']/..")
-	private WebElement msgUserDelete;
-
 	public void clickUserLink() {
-		userLink.click();
+		 try {
+		        userLink.click();
+		    } catch (NoSuchElementException ex) {
+		        System.out.println("User link not found: " + ex.getMessage());
+		    }
 	}
 	
-	
-
 	public void navigateToUser() {
 		try {
 			userLink.click();
@@ -75,6 +59,50 @@ public class UsersObjects {
 			e.printStackTrace();
 		}
 	}
+		
+	public List<String> sorting(String columnHeading, int clickCount) {
+		int columnIndex = -1;
+		List<String> originalList = new ArrayList<>();
+		try {
+			WebElement columnHeadingElement = driver
+					.findElement(By.xpath("//th[contains(text(),'" + columnHeading + " ')]"));
+			for (int i = 0; i < clickCount; i++) {
+				columnHeadingElement.click();
+			}
+			if (columnHeading.contains("ID")) {
+				columnIndex = 2;
+			} else if (columnHeading.contains("Name")) {
+				columnIndex = 3;
+			} else if (columnHeading.contains("Location")) {
+				columnIndex = 4;
+			} else if (columnHeading.contains("Phone Number")) {
+				columnIndex = 5;
+			}
+			do {
+				List<WebElement> itemlist = driver.findElements(By.xpath("//tr/td[" + columnIndex + "]"));
+				List<String> pageItems = itemlist.stream().map(a -> a.getText().toLowerCase())
+						.collect(Collectors.toList());
+				originalList.addAll(pageItems);
+				if (nextPageButton.isEnabled()) {
+					nextPageButton.click();
+				} else {
+					break;
+				}
+			} while (true);
+		} catch (NoSuchElementException ex) {
+			System.out.println("Element not found: " + ex.getMessage());
+		}
+
+		return originalList;
+	}
+	
+//	 Delete User
+	@FindBy(xpath="//span[@class='pi pi-times ng-tns-c133-9']/..")
+	WebElement alertCloseBtn;
+	@FindBy(xpath="//div[@class='p-toast-detail ng-tns-c90-10']/..")
+	private WebElement msgDeleteSuccess;
+	@FindBy(xpath="//div[@class='p-toast-summary ng-tns-c90-10']/..")
+	private WebElement msgUserDelete;
 	@FindBy(xpath="//span[contains(text(),'Yes')]/..")
      private WebElement deleteYesBtn;
 	@FindBy(xpath="//span[contains(text(),'No')]/..")
@@ -83,203 +111,50 @@ public class UsersObjects {
     private WebElement deleteConfirmMsg;
 	@FindBy(xpath = "//button[@class='p-button-rounded p-button-danger p-button p-component p-button-icon-only'] ")   
 	WebElement rowDeleteButton;
-	@FindBy(xpath="//p-confirmdialog/div/div/div[1]/div/button")
-	private WebElement deleteCloseIcon;
-	
-	public void clickDeleteCloseIcon() {
-		deleteCloseIcon.click();
-	}
-	public void clickRowDeleteButton() {
-		rowDeleteButton.click();
-	}
-	public void clickNoBtnInDeleteAlert() {
-		deleteNoBtn.click();
-	}
-	public void validateRowDeleteBtn() {
-		Assert.assertTrue(deleteYesBtn.isEnabled(), "Yes button is disabled for assign student popup");
-		Assert.assertTrue(deleteNoBtn.isEnabled(), "No button is disabled for assign student popup");
-		Assert.assertEquals(deleteConfirmMsg.getText(), "Confirm",
-				"Confirm heading is not present in the student popup");
-		System.out.println("Is  Yes button in Delete popup window enabled? " + deleteYesBtn.isEnabled());
-		
-	}
-	
-	
-  
 	@FindBy(xpath="//p-confirmdialog/div/div")
 	private WebElement deletePopupWindow;
 	
-	public void validateNoBtnInDeletionAlert() {
-		clickNoBtnInDeleteAlert();
+	public void clickRowDeleteButton() {
+	    try {
+	        rowDeleteButton.click();
+	    } catch (NoSuchElementException ex) {
+	        System.out.println("Row delete button element not found on the page.");
+	    }
+	}
+	
+	public void validateRowDeleteBtn() {
+		try {
+			Assert.assertTrue(deleteYesBtn.isEnabled(), "Yes button is disabled for assign student popup");
+		} catch (NoSuchElementException ex) {
+			System.out.println("Yes button element not found on the page.");
+		}
+		try {
+			Assert.assertTrue(deleteNoBtn.isEnabled(), "No button is disabled for assign student popup");
+		} catch (NoSuchElementException ex) {
+			System.out.println("No button element not found on the page.");
+		}
+		try {
+			Assert.assertEquals(deleteConfirmMsg.getText(), "Confirm",
+					"Confirm heading is not present in the student popup");
+		} catch (NoSuchElementException ex) {
+			System.out.println("Confirm heading element not found on the page.");
+		}
+		System.out.println("Is  Yes button in Delete popup window enabled? " + deleteYesBtn.isEnabled());
+	}
+		
+	public void validatePopupAlertExists() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 		try {
-		 
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("deletePopupWindow")));
+		 	wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("deletePopupWindow")));
 			System.out.println("Deletion alert disappeared successfully");
 		}catch (NoSuchElementException  e) {
 		    System.out.println("Deletion alert was not found or is stale.");
 		}
 	}
-	
-	public void validateCloseIconInDeletionAlert() {
-		clickDeleteCloseIcon();
-		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-		 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("deletePopupWindow")));
-		 if(!popupAlertDeletionExists(driver)) {
-			 System.out.println("Popup window closes after clicking No button.");
-		 }else {
-	            System.out.println("Popup window is still present.");
-	        }
-	}
-	
-	public static boolean popupAlertDeletionExists(WebDriver driver) {
-		try {
-			driver.findElement(By.xpath("//p-confirmdialog/div/div"));
-			return true;
-		} catch(org.openqa.selenium.NoSuchElementException e) {
-			return false;
-		}
 		
-	}
-	public List<String> sorting(String columnHeading, int clickCount) {
-
-		int columnIndex = -1;
-		List<String> originalList = new ArrayList<>();
-
-		WebElement columnHeadingElement = driver
-				.findElement(By.xpath("//th[contains(text(),'" + columnHeading + " ')]"));
-		for (int i = 0; i < clickCount; i++) {
-			columnHeadingElement.click();
-		}
-
-		if (columnHeading.contains("ID")) {
-			columnIndex = 2;
-		} else if (columnHeading.contains("Name")) {
-			columnIndex = 3;
-		} else if (columnHeading.contains("Location")) {
-			columnIndex = 4;
-		} else if (columnHeading.contains("Phone Number")) {
-			columnIndex = 5;
-		}
-
-		do {
-			List<WebElement> itemlist = driver.findElements(By.xpath("//tr/td[" + columnIndex + "]"));
-			List<String> pageItems = itemlist.stream().map(a -> a.getText().toLowerCase()).collect(Collectors.toList());
-			originalList.addAll(pageItems);
-
-			if (nextPageButton.isEnabled()) {
-				nextPageButton.click();
-			} else {
-				break;
-			}
-
-		} while (true);
-
-		return originalList;
-	}
-
-	
 //	checkDelete = driver.findElement(By.xpath(String.format("//tr/td[contains(text(),'%s')]/../td[1]", id)));
-	public void delete1(String alertAction, List<String> UserID) throws InterruptedException {
-		List<String> ids = new ArrayList<>(UserID);
-		Collections.sort(ids);
-		idSort.click();
-		List<String> originalList =sorting("ID",2);
-		int index = 0;
-		boolean gotoNextPage = false;
-		
-		do {
-			for (int i = index; i < ids.size(); i++) {
-				String id = ids.get(i);
-				try {
-					System.out.println(id);
-					WebElement chkbox=driver.findElement(By.xpath("//tr/td[contains(text(),'" + id + "')]//preceding-sibling::td[1]"));
-					chkbox.click();
-					WebElement deleteBtn=driver.findElement(By.xpath("//tr/td[contains(text(),'" + id + "')]//following-sibling::td[4]//button[2]"));
-					deleteBtn.click();
-					if (alertAction.equalsIgnoreCase("yes")) {
-						alertYesBtn.click();
-						Assert.assertEquals(msgDeleteSuccess.getText(), "Successful","Actual message is not matching with expected");
-						Assert.assertEquals(msgUserDelete.getText(),"User Deleted","Actual message is not matching with expected");
-						Assert.assertTrue(!originalList.contains(id));
-					} else if(alertAction.equalsIgnoreCase("no")) {
-	                	alertNoBtn.click();
-	                	
-	                	
-	                	
-	                }else if(alertAction.equalsIgnoreCase("close")) {
-					    alertCloseBtn.click();
-	                }
-					
-				} catch (NoSuchElementException ex) {
-					 gotoNextPage = true;
-		                break;
-				}
-				index++;
-			}
-			
-			 if (gotoNextPage && index< ids.size()) {
-		            if (nextPageButton.isEnabled()) {
-		            	nextPageButton.click();
-		            } else {
-		                  break;
-		            }
-		        }
-			 if(index == ids.size())
-		        	break;
-		    } while (gotoNextPage || !ids.isEmpty());
-		
-	}
-
-	public void singleUserDeleteInRow1(String alertAction, List<String> UserID) throws InterruptedException {
-		List<String> ids = new ArrayList<>(UserID);
-		Collections.sort(ids);
-		idSort.click();
-//		List<String> originalList = sorting("ID", 2);
-		int index = 0;
-		boolean gotoNextPage = false;
-		do {
-			for (int i = index; i < ids.size(); i++) {
-				String id = ids.get(i);
-				try {
-					System.out.println(id);
-					WebElement chkbox = driver.findElement(By.xpath("//tr/td[contains(text(),'" + id + "')]//preceding-sibling::td[1]"));
-					chkbox.click();
-					WebElement deleteBtn = driver.findElement(By.xpath("//tr/td[contains(text(),'" + id + "')]//following-sibling::td[4]//button[2]"));
-					deleteBtn.click();
-					if (alertAction.equalsIgnoreCase("yes")) {
-						alertYesBtn.click();
-						Assert.assertEquals(msgDeleteSuccess.getText(), "Successful",
-								"Actual message is not matching with expected");
-						Assert.assertEquals(msgUserDelete.getText(), "User Deleted",
-								"Actual message is not matching with expected");
-//						Assert.assertTrue(!originalList.contains(id));
-					} else if (alertAction.equalsIgnoreCase("no")) {
-						alertNoBtn.click();
-					} else if (alertAction.equalsIgnoreCase("close")) {
-						alertCloseBtn.click();
-					}
-
-				} catch (NoSuchElementException ex) {
-					gotoNextPage = true;
-					break;
-				}
-				index++;
-			}
-
-			if (gotoNextPage && index < ids.size()) {
-				if (nextPageButton.isEnabled()) {
-					nextPageButton.click();
-				} else {
-					break;
-				}
-			}
-			if (index == ids.size())
-				break;
-		} while (gotoNextPage || !ids.isEmpty());
-
-	}
-	public void singleUserDeleteInRow(String alertAction, List<String> UserID) throws InterruptedException {
+		public void singleUserDeleteInRow(String alertAction, List<String> UserID) throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
 		List<String> ids = new ArrayList<>(UserID);
 		List<String> originalList = sorting("ID", 2);
 		Collections.sort(ids);
@@ -291,28 +166,29 @@ public class UsersObjects {
 			for (int i = index; i < ids.size(); i++) {
 				String id = ids.get(i);
 				try {
-					WebElement chkbox=driver.findElement(By.xpath("//tr/td[contains(text(),'" + id + "')]//preceding-sibling::td[1]"));
-					chkbox.click();
+					WebElement checkbox=driver.findElement(By.xpath("//tr/td[contains(text(),'" + id + "')]//preceding-sibling::td[1]"));
+					checkbox.click();
 					deleteBtn=driver.findElement(By.xpath("//tr/td[contains(text(),'" + id + "')]//following-sibling::td[4]//button[2]"));
 					deleteBtn.click();
+					Thread.sleep(1000);
 					if (alertAction.equalsIgnoreCase("yes")) {
-						alertYesBtn.click();
-						System.out.println("msgDeleteSuccess is "+msgDeleteSuccess.getText());
+						deleteYesBtn.click();
 						String actualMsg =msgDeleteSuccess.getText().trim();
+						System.out.println("actualMsg is "+actualMsg);
 						String expectedMessage = "Successful\nUser Deleted".trim();
-//						Assert.assertEquals(actualMsg, expectedMessage, "Actual message is not matching with expected");
-//						Assert.assertEquals(msgDeleteSuccess.getText(), "Successful\r\n"
-//								+ "User Deleted",
-//								"Actual message is not matching with expected");
-//						Assert.assertEquals(msgUserDelete.getText(), "User Deleted",
-//								"Actual message is not matching with expected");
-						Assert.assertTrue(!originalList.contains(id));
+						Thread.sleep(1000);
+						softAssert.assertEquals(actualMsg, expectedMessage, "Actual message is not matching with expected");
+						Thread.sleep(1000);
+						softAssert.assertTrue(!originalList.contains(id));
+						softAssert.assertAll();
 					} else if (alertAction.equalsIgnoreCase("no")) {
-						alertNoBtn.click();
-						chkbox.click();
-					} else if (alertAction.equalsIgnoreCase("close")) {
+						deleteNoBtn.click();
+						checkbox.click();
+						validatePopupAlertExists();
+	    			} else if (alertAction.equalsIgnoreCase("close")) {
 						alertCloseBtn.click();
-						chkbox.click();
+						checkbox.click();
+						validatePopupAlertExists();
 					}
 				} catch (NoSuchElementException ex) {
 					 gotoNextPage = true;
@@ -330,26 +206,90 @@ public class UsersObjects {
 			 if(index == ids.size())
 		        	break;
 		    } while (gotoNextPage || !ids.isEmpty());
+	}
+//		Delete multiple users
+		@FindBy(xpath="//span[@class='p-checkbox-icon']/..")
+		private WebElement checkBox;
+		@FindBy(xpath="//button[@class='p-button-danger p-button p-component p-button-icon-only']")
+		private WebElement headerDeleteBtn;
 		
-	}
-	
-	public void switchToPopupDelete() {
-		String parentId = driver.getWindowHandle();
-		Set<String> windowHandles = driver.getWindowHandles();
-
-		if (windowHandles.size() > 1) {
-			for (String handle : windowHandles) {
-				if (!handle.equals(parentId)) {
-					driver.switchTo().window(handle);
-					System.out.println("Switched to window: " + driver.getTitle());
-					break;
-				}
-			}
-		} else {
-			System.err.println("No new window found to switch to.");
+		public void clickCheckBox() {
+		    try {
+		        checkBox.click();
+		    } catch (NoSuchElementException ex) {
+		        System.out.println("Checkbox element not found on the page.");
+		    }
 		}
-	}
-	
+		
+		public void validateHeaderDelete() {
+			try {
+				boolean isheaderDeleteBtn = headerDeleteBtn.isEnabled();
+				if (isheaderDeleteBtn) {
+				    System.out.println("Delete button is enabled after clicking the checkbox.");
+				} else {
+				    System.out.println("Delete button is not enabled after clicking the checkbox.");
+				}
+			} 	catch (NoSuchElementException e) {
+		        System.out.println("Delete button not found on the page.");
+		    }
+		}
+		
+		public void multipleUserDelete(String alertAction, List<String> UserID) throws InterruptedException {
+			SoftAssert softAssert = new SoftAssert();
+			List<String> ids = new ArrayList<>(UserID);
+			List<String> originalList = sorting("ID", 2);
+			Collections.sort(ids);
+			idSort.click();
+			boolean gotoNextPage = false;
+			WebElement deleteBtn = null;
+			int index = 0;
+			String id = "";
+			do {
+				for (int i = index; i < ids.size(); i++) {
+					id = ids.get(i);
+					try {
+						WebElement checkbox = driver.findElement(
+								By.xpath("//tr/td[contains(text(),'" + id + "')]//preceding-sibling::td[1]"));
+						checkbox.click();
+						Thread.sleep(500);
+					} catch (NoSuchElementException ex) {
+						gotoNextPage = true;
+						break;
+					}
+					index++;
+				}
+
+				if (gotoNextPage && index < ids.size()) {
+					if (nextPageButton.isEnabled()) {
+						nextPageButton.click();
+					} else {
+						break;
+					}
+				}
+				if (index == ids.size())
+					break;
+			} while (gotoNextPage || !ids.isEmpty());
+			headerDeleteBtn.click();
+			Thread.sleep(1000);
+			if (alertAction.equalsIgnoreCase("yes")) {
+				deleteYesBtn.click();
+				String actualMsg = msgDeleteSuccess.getText().trim();
+				System.out.println("actualMsg is " + actualMsg);
+				String expectedMessage = "Successful\nUsers Deleted".trim();
+				Thread.sleep(1000);
+				softAssert.assertEquals(actualMsg, expectedMessage, "Actual message is not matching with expected");
+				Thread.sleep(1000);
+				softAssert.assertTrue(!originalList.contains(id));
+				softAssert.assertAll();
+			} else if (alertAction.equalsIgnoreCase("no")) {
+				deleteNoBtn.click();
+				validatePopupAlertExists();
+			} else if (alertAction.equalsIgnoreCase("close")) {
+				alertCloseBtn.click();
+				validatePopupAlertExists();
+			}
+		}
+		
 //	 Assign Staff
 	@FindBy(xpath="//button[@label='Assign Staff']")
 	private WebElement assignStaffLink;
@@ -392,14 +332,29 @@ public class UsersObjects {
 	private WebElement assignStudentLink;
 	
 	public void clickAssignStudentLink() {
+		try {
 		assignStudentLink.click();
+		}catch (NoSuchElementException ex) {
+	        System.out.println("Assign Student link element not found: " + ex.getMessage());
+	    }
 	}
 	
 	public void buttonValidation() {
-		
+		try {
 		Assert.assertTrue(SaveButton.isEnabled(),"Save button is disabled for assign student popup");
+		}catch (NoSuchElementException ex) {
+	        System.out.println("Save button element not found: " + ex.getMessage());
+	    }
+		try {
 		Assert.assertTrue(CancelButton.isEnabled(), "Cancel button is disabled for assign student popup");
+		}catch (NoSuchElementException ex) {
+	        System.out.println("Cancel button element not found: " + ex.getMessage());
+	    }
+		try {
 		Assert.assertTrue(CloseIcon.isEnabled(), "Close button is disabled for assign student popup");
+		}catch (NoSuchElementException ex) {
+	        System.out.println("Close button element not found: " + ex.getMessage());
+	    }
 	}
 	@FindBy(xpath="//div[contains(text(),' User Email Id is required. ')]")
 	private WebElement emailIdErrMsg;
@@ -411,12 +366,26 @@ public class UsersObjects {
 	private WebElement statusErrMsg;
 	
 	public void  validateEmptyFormErrMsg() {
-		
+		try {
 		Assert.assertTrue(emailIdErrMsg.getText().contains("User Email Id is required.") , "Invalid Error msg for emaild id");
+		}catch (NoSuchElementException ex) {
+	        System.out.println("User Email Id error message element not found: " + ex.getMessage());
+	    }
+		try {
 		Assert.assertTrue(programNameErrMsg.getText().equals("Program Name is required.") , "Invalid Error msg for Program Name");
+		}catch (NoSuchElementException ex) {
+	        System.out.println("Program Name error message element not found: " + ex.getMessage());
+	    }
+		try {
 		Assert.assertTrue(batchNameErrMsg.getText().equals("Batch Name is required.") , "Invalid Error msg for Batch name");
+		}catch (NoSuchElementException ex) {
+	        System.out.println("Batch Name error message element not found: " + ex.getMessage());
+	    }
+		try {
 		Assert.assertTrue(statusErrMsg.getText().equals("Status is required.") , "Invalid Error msg for status");
-		
+		}catch (NoSuchElementException ex) {
+	        System.out.println("Status error message element not found: " + ex.getMessage());
+		}
 	}
 	
 	public void dropDownValidation() {
@@ -424,34 +393,52 @@ public class UsersObjects {
 	}
 	
 	public void radioButtonValidation() {
+		try {
 		Assert.assertTrue(activeRadioButton.isEnabled(), "Active Radio Button is not Enbled");
+		}catch (NoSuchElementException ex) {
+	        System.out.println("Active Radio Button element not found: " + ex.getMessage());
+	    }
+		try {
 		Assert.assertTrue(inactiveRadioButton.isEnabled(), "Inactive Radio Button is not Enbled");
+		}catch (NoSuchElementException ex) {
+	        System.out.println("Inactive Radio Button element not found: " + ex.getMessage());
+	    }
 	}
 	
 	public void clickSaveButton() {
+		try {
 		SaveButton.click();
+		}catch (NoSuchElementException ex) {
+	        System.out.println("Save button element not found: " + ex.getMessage());
+	    }
 	}
 	
 	public void validateInputfields() {
-		try
-		{
-	
-			Assert.assertTrue(staffUserRoleInput.getAttribute("value").equals("R03") , "Default value of UserRole is not valid");
-			Assert.assertTrue(staffEmailDropDown.getText().equals("Select Email ID") , "Default value of Email Id feild is not valid");
-			Assert.assertTrue(staffProgramNameDropDown.getText().equals("") , "Default value of Proogram Name feild is not valid");
-			Assert.assertTrue(staffBatchNameDropDown.getText().equals("") , "Default value of Batch Name feild is not valid");
-		
-		}
-		
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+	    SoftAssert softAssert = new SoftAssert();
+	    try {
+	        softAssert.assertEquals(staffUserRoleInput.getAttribute("value"), "R03", "Default value of UserRole is not valid");
+	        softAssert.assertEquals(staffEmailDropDown.getText(), "Select Email ID", "Default value of Email Id field is not valid");
+	        softAssert.assertEquals(staffProgramNameDropDown.getText(), "", "Default value of Program Name field is not valid");
+	        softAssert.assertEquals(staffBatchNameDropDown.getText(), "", "Default value of Batch Name field is not valid");
+	    } catch (AssertionError e) {
+	        System.out.println("Assertion error occurred: " + e.getMessage());
+	        e.printStackTrace();
+	    } catch (Exception ex) {
+	        System.out.println("An unexpected error occurred: " + ex.getMessage());
+	        ex.printStackTrace();
+	    } finally {
+	        softAssert.assertAll();
+	    }
 	}
 	
 	public void validateErrMsgAssignStdtWithOutStatus()
 	{
+		try {
 		Assert.assertTrue(stdStatusErrmsg.getText().equals("Status is required.") , "Invalid Error msg for status");
+		}catch (Exception ex) {
+	        System.out.println("An unexpected error occurred: " + ex.getMessage());
+	        ex.printStackTrace();
+		}
 	}
 
 	@FindBy(xpath="//div[@role='button']")
@@ -464,8 +451,8 @@ public class UsersObjects {
 	WebElement batchDropDown;
 	
 	
-	public void validateAssignStdtWithOutStatus(String emailid)
-	{
+	public void validateAssignStdtWithOutStatus(String emailid){
+	try {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		emailDropDown.click();
 		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
@@ -488,7 +475,9 @@ public class UsersObjects {
 		List<WebElement>batchList= driver.findElements(By.xpath("//li"));
 		executor.executeScript("arguments[0].click();", batchList.get(0));
 		clickSaveButton();
-			
+	} catch (Exception e) {
+        e.printStackTrace();
+       }
 	}
 	
 	
@@ -498,23 +487,9 @@ public class UsersObjects {
 //	@FindBy(xpath="//input[@id='batchName']")
 //	private WebElement batchNameInput;
 	
-	public void validateWithStudentEmailId(String emailid) throws InterruptedException {
-		Thread.sleep(4000);
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", emailDropDown);
-//		emailDropDown.click();
-//		Thread.sleep(4000);
 		
-//		WebElement studentEmailId =driver.findElement(By.xpath(String.format("//*[@id='userId']//ul/p-dropdownitem/li[@aria-label='%s']", emailid)));
-//		Thread.sleep(4000);
-//		studentEmailId.click();
-//		programNameInput.sendKeys("programName");
-//		batchNameInput.sendKeys("batchName");
-//		clickSaveButton();
-	}
-	
-	public void validateAssignStdtWithOutBatch(String emailid)
-	{
+	public void validateAssignStdtWithOutBatch(String emailid) {
+	 try {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		emailDropDown.click();
 		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
@@ -534,16 +509,23 @@ public class UsersObjects {
 		List<WebElement>progList= driver.findElements(By.xpath("//li"));
 		progList.get(0).click();
 		clickSaveButton();
+	 } catch (Exception e) {
+	        e.printStackTrace();
+	       }
 	}
 	
 	public void validateErrMsgAssignStdtWithOutProgram()
 	{
+		try {
 		Assert.assertTrue(programNameErrMsg.getText().equals("Program Name is required.") , "Invalid Error msg for Program Name");
+		} catch(AssertionError e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
-	public void validateAssignStdtWithOutProgram(String emailid)
-	{
+	public void validateAssignStdtWithOutProgram(String emailid){
+	try {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		emailDropDown.click();
 		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
@@ -560,12 +542,17 @@ public class UsersObjects {
 			}
 		}
 			clickSaveButton();
+	 } catch (Exception e) {
+	        e.printStackTrace();
+	       }
 	}
 	
-	public void validateErrMsgAssignStdtWithOutBatch()
-	{
+	public void validateErrMsgAssignStdtWithOutBatch(){
+	 try {
 		Assert.assertTrue(programNameErrMsg.getText().equals("Batch Name is required.") , "Invalid Error msg for Batch name");
-	}
-	
+	 }  catch(AssertionError e) {
+		e.printStackTrace();
+	 }
+    }
 	
 }

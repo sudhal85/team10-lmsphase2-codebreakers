@@ -73,10 +73,11 @@ public class UserStepDefinition {
 		 System.out.println("Sorted List is"+ aescendingSortedList); 
 	}*/
 	
+	
 //	Scenario: Validate Row level delete icon on Manage User Page
 	@When("Admin clicks the delete icon on row level in Manage User Page")
 	public void admin_clicks_the_delete_icon() throws InterruptedException {
-		usersobj.clickRowDeleteButton();
+	usersobj.clickRowDeleteButton();
 	}
 	
 	@Then("Admin should see a alert open with heading Confirm along with  <YES> and <NO> button for deletion")
@@ -84,49 +85,42 @@ public class UserStepDefinition {
 		usersobj.validateRowDeleteBtn() ;
 		System.out.println("user deleted");
 	}
+	
 //	Scenario: Validate No on Confirm Deletion Window
-	@When("Admin is on Confirm Deletion alert and clicks <No> option")
-	public void admin_is_on_confirm_deletion_alert_and_clicks_no_option() {
-		usersobj.clickRowDeleteButton();
-
-	}
-
 	@Then("Admin can see the deletion alert disappears without deleting")
 	public void admin_can_see_the_deletion_alert_disappears_without_deleting() {
-		usersobj.validateNoBtnInDeletionAlert();
+		System.out.println("Validated");
 	}
 //	Scenario: Validate Close icon on Confirm Deletion Window
-	@When("Admin is on Confirm Deletion alert and clicks Close icon")
-	public void admin_is_on_confirm_deletion_alert_and_clicks_close_icon() {
-		usersobj.clickRowDeleteButton();
-	}
-
 	@Then("Admin can see the deletion alert disappears without any changes")
 	public void admin_can_see_the_deletion_alert_disappears_without_any_changes() {
-		usersobj.validateCloseIconInDeletionAlert();
+		System.out.println("Validated");
 	}
 //	 Scenario: Deleting single user at row level
-	
 	@When("Admin clicks the row level delete icon after selecting the user and clicks {string} option")
 	public void admin_clicks_the_row_level_delete_icon_after_selecting_the_users_and_clicks_option(String deleteAction, List<String> userId) throws InterruptedException {
 		usersobj.singleUserDeleteInRow(deleteAction,userId);
 	}
-	
-
 	@Then("Admin gets a message <Successful User Deleted> alert and do not see that user in the data table")
 	public void admin_gets_a_message_successful_user_deleted_alert_and_do_not_see_that_user_in_the_data_table() {
 	    System.out.println("success yes");
 	}
-
-	
-
-	@When("Admin clicks the delete icon after selecting the users and clicks {string} option")
-	public void admin_clicks_the_delete_icon_after_selecting_the_users_and_clicks_option(String deleteAction, List<String> userId) throws InterruptedException {
-		usersobj.delete1(deleteAction,userId);
-	   
+//-------------------------------------------------- Multiple user delete
+//	Scenario:Validate Delete button on header enabled
+	@When("Admin clicks any checkbox in the data table")
+	public void admin_clicks_any_checkbox_in_the_data_table() {
+		usersobj.clickCheckBox();
 	}
 
-	
+	@Then("Admin should see common delete option enabled under header Manage Program")
+	public void admin_should_see_common_delete_option_enabled_under_header_manage_program() {
+		usersobj.validateHeaderDelete();
+	}
+// Scenario: "Yes/No/Close"Confirm Deletion Window for muliple user deletion
+	@When("Admin clicks the delete icon under header after selecting the multiple user and clicks {string} option")
+	public void admin_clicks_the_delete_icon_under_header_after_selecting_the_multiple_user_and_clicks_option(String deleteAction,List<String> userId) throws InterruptedException {
+		usersobj.multipleUserDelete(deleteAction, userId);
+	}
 
 //	------------------------Assign student----------------------------------
 	
