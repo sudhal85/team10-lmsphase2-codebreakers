@@ -19,6 +19,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import com.herokuapp.codebreakers.utilities.LoggerLoad;
+
 public class UsersObjects {
 	WebDriver driver;
 
@@ -26,6 +28,7 @@ public class UsersObjects {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	
 //Sorting
 	
 	@FindBy(xpath = "//button[@id='user']")
@@ -46,7 +49,7 @@ public class UsersObjects {
 		 try {
 		        userLink.click();
 		    } catch (NoSuchElementException ex) {
-		        System.out.println("User link not found: " + ex.getMessage());
+		    	LoggerLoad.error("User link not found: " + ex.getMessage());
 		    }
 	}
 	
@@ -90,7 +93,8 @@ public class UsersObjects {
 				}
 			} while (true);
 		} catch (NoSuchElementException ex) {
-			System.out.println("Element not found: " + ex.getMessage());
+			LoggerLoad.info("Element not found: " + ex.getMessage());
+			
 		}
 
 		return originalList;
@@ -111,14 +115,14 @@ public class UsersObjects {
     private WebElement deleteConfirmMsg;
 	@FindBy(xpath = "//button[@class='p-button-rounded p-button-danger p-button p-component p-button-icon-only'] ")   
 	WebElement rowDeleteButton;
-	@FindBy(xpath="//p-confirmdialog/div/div")
-	private WebElement deletePopupWindow;
-	
+//	@FindBy(xpath="//p-confirmdialog/div/div")
+//	private WebElement deletePopupWindow;
+	String deletePopupWindow = "//p-confirmdialog/div/di";
 	public void clickRowDeleteButton() {
 	    try {
 	        rowDeleteButton.click();
 	    } catch (NoSuchElementException ex) {
-	        System.out.println("Row delete button element not found on the page.");
+	    	LoggerLoad.error("Row delete button element not found on the page.");
 	    }
 	}
 	
@@ -126,29 +130,29 @@ public class UsersObjects {
 		try {
 			Assert.assertTrue(deleteYesBtn.isEnabled(), "Yes button is disabled for assign student popup");
 		} catch (NoSuchElementException ex) {
-			System.out.println("Yes button element not found on the page.");
+			LoggerLoad.error("Yes button element not found on the page.");
 		}
 		try {
 			Assert.assertTrue(deleteNoBtn.isEnabled(), "No button is disabled for assign student popup");
 		} catch (NoSuchElementException ex) {
-			System.out.println("No button element not found on the page.");
+			LoggerLoad.error("No button element not found on the page.");
 		}
 		try {
 			Assert.assertEquals(deleteConfirmMsg.getText(), "Confirm",
 					"Confirm heading is not present in the student popup");
 		} catch (NoSuchElementException ex) {
-			System.out.println("Confirm heading element not found on the page.");
+			LoggerLoad.error("Confirm heading element not found on the page.");
 		}
-		System.out.println("Is  Yes button in Delete popup window enabled? " + deleteYesBtn.isEnabled());
+		LoggerLoad.error("Is  Yes button in Delete popup window enabled? " + deleteYesBtn.isEnabled());
 	}
 		
 	public void validatePopupAlertExists() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 		try {
-		 	wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("deletePopupWindow")));
-			System.out.println("Deletion alert disappeared successfully");
+		 	wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(deletePopupWindow)));
+		 	LoggerLoad.error("Deletion alert disappeared successfully");
 		}catch (NoSuchElementException  e) {
-		    System.out.println("Deletion alert was not found or is stale.");
+			LoggerLoad.error("Deletion alert was not found or is stale.");
 		}
 	}
 		
@@ -174,7 +178,6 @@ public class UsersObjects {
 					if (alertAction.equalsIgnoreCase("yes")) {
 						deleteYesBtn.click();
 						String actualMsg =msgDeleteSuccess.getText().trim();
-						System.out.println("actualMsg is "+actualMsg);
 						String expectedMessage = "Successful\nUser Deleted".trim();
 						Thread.sleep(1000);
 						softAssert.assertEquals(actualMsg, expectedMessage, "Actual message is not matching with expected");
@@ -217,7 +220,7 @@ public class UsersObjects {
 		    try {
 		        checkBox.click();
 		    } catch (NoSuchElementException ex) {
-		        System.out.println("Checkbox element not found on the page.");
+		    	LoggerLoad.error("Checkbox element not found on the page.");
 		    }
 		}
 		
@@ -227,10 +230,10 @@ public class UsersObjects {
 				if (isheaderDeleteBtn) {
 				    System.out.println("Delete button is enabled after clicking the checkbox.");
 				} else {
-				    System.out.println("Delete button is not enabled after clicking the checkbox.");
+					LoggerLoad.error("Delete button is not enabled after clicking the checkbox.");
 				}
 			} 	catch (NoSuchElementException e) {
-		        System.out.println("Delete button not found on the page.");
+				LoggerLoad.error("Delete button not found on the page.");
 		    }
 		}
 		
@@ -274,7 +277,7 @@ public class UsersObjects {
 			if (alertAction.equalsIgnoreCase("yes")) {
 				deleteYesBtn.click();
 				String actualMsg = msgDeleteSuccess.getText().trim();
-				System.out.println("actualMsg is " + actualMsg);
+				LoggerLoad.info("actualMsg is " + actualMsg);
 				String expectedMessage = "Successful\nUsers Deleted".trim();
 				Thread.sleep(1000);
 				softAssert.assertEquals(actualMsg, expectedMessage, "Actual message is not matching with expected");
@@ -291,8 +294,7 @@ public class UsersObjects {
 		}
 		
 //	 Assign Staff
-	@FindBy(xpath="//button[@label='Assign Staff']")
-	private WebElement assignStaffLink;
+
 	
 	@FindBy(xpath="//button[@label='Cancel']")
 	private WebElement CancelButton;
@@ -304,19 +306,18 @@ public class UsersObjects {
 	private WebElement CloseIcon;
 	
 	@FindBy(xpath="//input[@id='roleId']")
-	private WebElement staffUserRoleInput;
+	private WebElement userRoleInput;
 	
 	@FindBy(xpath="//span[text()='Select Email Id']/..")
 	private WebElement staffEmailDropDown;
 	
-	@FindBy(xpath="//input[@id='skillName']")
-	private WebElement staffSkillInput;
+	
 	
 	
 	@FindBy(xpath="//input[@id='programName']")
 	private WebElement staffProgramNameDropDown;
 	
-	@FindBy(xpath="//input[@id='batchName']")
+	@FindBy(xpath="//input[@id='batchName']")  // change
 	private WebElement staffBatchNameDropDown;
 	
 	@FindBy(xpath="//input[@id='Active']")
@@ -335,7 +336,7 @@ public class UsersObjects {
 		try {
 		assignStudentLink.click();
 		}catch (NoSuchElementException ex) {
-	        System.out.println("Assign Student link element not found: " + ex.getMessage());
+			LoggerLoad.error("Assign Student link element not found: " + ex.getMessage());
 	    }
 	}
 	
@@ -343,33 +344,33 @@ public class UsersObjects {
 		try {
 		Assert.assertTrue(SaveButton.isEnabled(),"Save button is disabled for assign student popup");
 		}catch (NoSuchElementException ex) {
-	        System.out.println("Save button element not found: " + ex.getMessage());
+			LoggerLoad.error("Save button element not found: " + ex.getMessage());
 	    }
 		try {
 		Assert.assertTrue(CancelButton.isEnabled(), "Cancel button is disabled for assign student popup");
 		}catch (NoSuchElementException ex) {
-	        System.out.println("Cancel button element not found: " + ex.getMessage());
+			LoggerLoad.error("Cancel button element not found: " + ex.getMessage());
 	    }
 		try {
 		Assert.assertTrue(CloseIcon.isEnabled(), "Close button is disabled for assign student popup");
 		}catch (NoSuchElementException ex) {
-	        System.out.println("Close button element not found: " + ex.getMessage());
+			LoggerLoad.error("Close button element not found: " + ex.getMessage());
 	    }
 	}
 	@FindBy(xpath="//div[contains(text(),' User Email Id is required. ')]")
 	private WebElement emailIdErrMsg;
-	@FindBy(xpath="//div[contains(text(),' Program Name is required. ')]")
+	@FindBy(xpath="//div[contains(text(),'Program Name is required. ')]")
 	private WebElement programNameErrMsg;
 	@FindBy(xpath="//div[contains(text(),' Batch Name is required. ')]")
 	private WebElement batchNameErrMsg;
 	@FindBy(xpath="//div[contains(text(),' Status is required. ')]")
 	private WebElement statusErrMsg;
 	
-	public void  validateEmptyFormErrMsg() {
+	public void  validateEmptyFormErrMsgForStudent() {
 		try {
 		Assert.assertTrue(emailIdErrMsg.getText().contains("User Email Id is required.") , "Invalid Error msg for emaild id");
 		}catch (NoSuchElementException ex) {
-	        System.out.println("User Email Id error message element not found: " + ex.getMessage());
+			LoggerLoad.error("User Email Id error message element not found: " + ex.getMessage());
 	    }
 		try {
 		Assert.assertTrue(programNameErrMsg.getText().equals("Program Name is required.") , "Invalid Error msg for Program Name");
@@ -379,29 +380,26 @@ public class UsersObjects {
 		try {
 		Assert.assertTrue(batchNameErrMsg.getText().equals("Batch Name is required.") , "Invalid Error msg for Batch name");
 		}catch (NoSuchElementException ex) {
-	        System.out.println("Batch Name error message element not found: " + ex.getMessage());
+			LoggerLoad.error("Batch Name error message element not found: " + ex.getMessage());
 	    }
 		try {
 		Assert.assertTrue(statusErrMsg.getText().equals("Status is required.") , "Invalid Error msg for status");
 		}catch (NoSuchElementException ex) {
-	        System.out.println("Status error message element not found: " + ex.getMessage());
+			LoggerLoad.error("Status error message element not found: " + ex.getMessage());
 		}
 	}
 	
-	public void dropDownValidation() {
-		
-	}
 	
 	public void radioButtonValidation() {
 		try {
 		Assert.assertTrue(activeRadioButton.isEnabled(), "Active Radio Button is not Enbled");
 		}catch (NoSuchElementException ex) {
-	        System.out.println("Active Radio Button element not found: " + ex.getMessage());
+			LoggerLoad.error("Active Radio Button element not found: " + ex.getMessage());
 	    }
 		try {
 		Assert.assertTrue(inactiveRadioButton.isEnabled(), "Inactive Radio Button is not Enbled");
 		}catch (NoSuchElementException ex) {
-	        System.out.println("Inactive Radio Button element not found: " + ex.getMessage());
+			LoggerLoad.error("Inactive Radio Button element not found: " + ex.getMessage());
 	    }
 	}
 	
@@ -409,22 +407,22 @@ public class UsersObjects {
 		try {
 		SaveButton.click();
 		}catch (NoSuchElementException ex) {
-	        System.out.println("Save button element not found: " + ex.getMessage());
+			LoggerLoad.error("Save button element not found: " + ex.getMessage());
 	    }
 	}
 	
-	public void validateInputfields() {
+	public void validateInputfieldsStudent() {
 	    SoftAssert softAssert = new SoftAssert();
 	    try {
-	        softAssert.assertEquals(staffUserRoleInput.getAttribute("value"), "R03", "Default value of UserRole is not valid");
+	        softAssert.assertEquals(userRoleInput.getAttribute("value"), "R03", "Default value of UserRole is not valid");
 	        softAssert.assertEquals(staffEmailDropDown.getText(), "Select Email ID", "Default value of Email Id field is not valid");
 	        softAssert.assertEquals(staffProgramNameDropDown.getText(), "", "Default value of Program Name field is not valid");
 	        softAssert.assertEquals(staffBatchNameDropDown.getText(), "", "Default value of Batch Name field is not valid");
 	    } catch (AssertionError e) {
-	        System.out.println("Assertion error occurred: " + e.getMessage());
+	    	LoggerLoad.error("Assertion error occurred: " + e.getMessage());
 	        e.printStackTrace();
 	    } catch (Exception ex) {
-	        System.out.println("An unexpected error occurred: " + ex.getMessage());
+	    	LoggerLoad.error("An unexpected error occurred: " + ex.getMessage());
 	        ex.printStackTrace();
 	    } finally {
 	        softAssert.assertAll();
@@ -436,15 +434,15 @@ public class UsersObjects {
 		try {
 		Assert.assertTrue(stdStatusErrmsg.getText().equals("Status is required.") , "Invalid Error msg for status");
 		}catch (Exception ex) {
-	        System.out.println("An unexpected error occurred: " + ex.getMessage());
+			LoggerLoad.error("An unexpected error occurred: " + ex.getMessage());
 	        ex.printStackTrace();
 		}
 	}
-
+	@FindBy(xpath="//li")
+	WebElement emailIds;
 	@FindBy(xpath="//div[@role='button']")
 	private WebElement emailDropDown;
 	//  //*[@id='userId']//ul/p-dropdownitem/li[@aria-label='java12@gmail.com']
-
 	@FindBy(xpath="(//div[@role='button'])[2]")
 	WebElement prognameDropDown;
 	@FindBy(xpath="//*[@id='batchName']")
@@ -476,18 +474,11 @@ public class UsersObjects {
 		executor.executeScript("arguments[0].click();", batchList.get(0));
 		clickSaveButton();
 	} catch (Exception e) {
+		LoggerLoad.error("Exception occured" + e.getMessage());
         e.printStackTrace();
        }
 	}
-	
-	
-	
-//	@FindBy(xpath="//input[@id='programName']")
-//	private WebElement programNameInput;
-//	@FindBy(xpath="//input[@id='batchName']")
-//	private WebElement batchNameInput;
-	
-		
+			
 	public void validateAssignStdtWithOutBatch(String emailid) {
 	 try {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -519,7 +510,7 @@ public class UsersObjects {
 		try {
 		Assert.assertTrue(programNameErrMsg.getText().equals("Program Name is required.") , "Invalid Error msg for Program Name");
 		} catch(AssertionError e) {
-			e.printStackTrace();
+			LoggerLoad.error("Exception occured" + e.getMessage());
 		}
 	}
 	
@@ -543,16 +534,259 @@ public class UsersObjects {
 		}
 			clickSaveButton();
 	 } catch (Exception e) {
+		 LoggerLoad.error("Exception occured" + e.getMessage());
 	        e.printStackTrace();
 	       }
 	}
 	
+	public void validateAssignStdtClickCloseBtn(String emailid) throws InterruptedException
+	{
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		emailDropDown.click();
+		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
+		ArrayList<String> StudtEmailids = new ArrayList<>();
+		for(WebElement element : emailidList)
+		{
+			StudtEmailids.add(element.getText());
+			
+		}
+		for(int i=0;i<StudtEmailids.size();i++)
+		{
+			if(StudtEmailids.get(i).equals(emailid))
+			{
+				
+			     executor.executeScript("arguments[0].click();", emailidList.get(i));
+			}
+		}
+		
+		prognameDropDown.click();
+		List<WebElement>progList= driver.findElements(By.xpath("//li"));
+		progList.get(0).click();
+		batchDropDown.click();
+		Thread.sleep(500);
+		List<WebElement>batchList= driver.findElements(By.xpath("//li"));
+		executor.executeScript("arguments[0].click();", batchList.get(0));
+		executor.executeScript("arguments[0].click();", activeRadioButton);
+		executor.executeScript("arguments[0].click();", CancelButton);
+				
+	}
+	
 	public void validateErrMsgAssignStdtWithOutBatch(){
 	 try {
-		Assert.assertTrue(programNameErrMsg.getText().equals("Batch Name is required.") , "Invalid Error msg for Batch name");
+		Assert.assertTrue(batchNameErrMsg.getText().equals("Batch Name is required.") , "Invalid Error msg for Batch name");
 	 }  catch(AssertionError e) {
+		 LoggerLoad.error("Exception occured" + e.getMessage());
 		e.printStackTrace();
 	 }
     }
 	
+	
+	
+//	--------------------Assign Staff----------------------------
+	@FindBy(xpath="//button[@label='Assign Staff']")
+	private WebElement assignStaffLink;
+	
+	public void clickAssignStaffLink() {
+		assignStaffLink.click();
+	}
+		
+	@FindBy(xpath = "//*[@id='programName']")
+	WebElement prgNameTxtBox;
+	@FindBy(xpath = "//*[@id='batchName']")
+	WebElement batchNameTxtBox;
+	@FindBy(xpath="//input[@id='skillName']")
+	private WebElement staffSkillInput;
+	
+	public void validateInputfieldsStaff() {
+		try
+		{	
+			Assert.assertTrue(userRoleInput.getAttribute("value").equals("R02") , "Default value of UserRole is not valid");
+			Assert.assertTrue(staffEmailDropDown.getText().equals("Select Email Id") , "Default value of Email Id feild is not valid");
+			Assert.assertTrue(staffSkillInput.getText().equals("") , "Default value of Skill feild is not valid");
+			Assert.assertTrue(prgNameTxtBox.getText().equals("Select a Program name") , "Default value of Proogram Name feild is not valid");
+			Assert.assertTrue(batchNameTxtBox.getText().equals("Select Batch Name") , "Default value of Batch Name feild is not valid");
+			LoggerLoad.info("Empty form validation for AssignStaff done sucessfully");
+		}		
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	@FindBy(xpath="//div[contains(text(),' Email Id is required. ')]")
+	WebElement assignstaffEmailErrmsg;
+	@FindBy(xpath = "//div[contains(text(),'Program Name is required. ')]")
+	WebElement assignstdProgErrmsg;
+	@FindBy(xpath = "//div[contains(text(),' Batch Name is required. ')]")
+	WebElement assignstdBatchErrmsg;
+	@FindBy(xpath = "//div[contains(text(),'Status is required. ')]")
+	WebElement assignstdStatusErrmsg;
+	
+	public void validateEmptyFormErrMsgForAssignStaff()
+	{
+			
+		Assert.assertTrue(assignstaffEmailErrmsg.getText().equals("Email Id is required.") , "Invalid Error msg for emaild id");
+		Assert.assertTrue(assignstdProgErrmsg.getText().equals("Program Name is required.") , "Invalid Error msg for Program Name");
+		Assert.assertTrue(assignstdBatchErrmsg.getText().equals("Batch Name is required.") , "Invalid Error msg for Batch name");
+		Assert.assertTrue(assignstdStatusErrmsg.getText().equals("Status is required.") , "Invalid Error msg for status");
+	
+	}
+	public void validateAssignStafftWithOutStatus(String emailid)
+	{
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		emailDropDown.click();
+		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
+		ArrayList<String> StudtEmailids = new ArrayList<>();
+		for(WebElement element : emailidList)
+		{
+			StudtEmailids.add(element.getText());
+		}
+		for(int i=0;i<StudtEmailids.size();i++)
+		{
+			if(StudtEmailids.get(i).equals(emailid))
+			{				 
+			     executor.executeScript("arguments[0].click();", emailidList.get(i));
+			}
+		}
+		prognameDropDown.click();
+		List<WebElement>progList= driver.findElements(By.xpath("//li"));
+		progList.get(3).click();
+		batchDropDown.click();
+		List<WebElement>batchList= driver.findElements(By.xpath("//li"));
+		executor.executeScript("arguments[0].click();", batchList.get(0));
+		SaveButton.click();
+			
+	}
+	public void validateAssignStafftWithOutEmailID() throws InterruptedException
+	{
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		prognameDropDown.click();
+		List<WebElement>progList= driver.findElements(By.xpath("//li"));
+		progList.get(2).click();
+		batchDropDown.click();
+		List<WebElement>batchList= driver.findElements(By.xpath("//li"));
+		executor.executeScript("arguments[0].click();", batchList.get(0));
+		executor.executeScript("arguments[0].click();", activeRadioButton);
+//		Thread.sleep(500);
+		SaveButton.click();
+			
+	}
+	@FindBy(xpath="//div[@role='button'][1]")
+	WebElement assignstaffEmailId;
+	
+	public void validateErrMsgAssignStafftWithOutEmailID()
+	{
+		System.out.println("validateErrMsgAssignStafftWithOutEmailID"+statusErrMsg.getText());
+		Assert.assertTrue(assignstaffEmailErrmsg.getText().equals("Email Id is required.") , "Invalid Error msg for emaild id");
+	}
+	
+	public void validateAssignStafftWithOutProgram(String emailid) throws InterruptedException
+	{
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		Thread.sleep(1000);
+		assignstaffEmailId.click();
+		Thread.sleep(2000);
+		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
+		ArrayList<String> StudtEmailids = new ArrayList<>();
+		for(WebElement element : emailidList)
+		{
+			StudtEmailids.add(element.getText());
+		}
+		for(int i=0;i<StudtEmailids.size();i++)
+		{
+			if(StudtEmailids.get(i).equals(emailid))
+			{				 
+			     executor.executeScript("arguments[0].click();", emailidList.get(i));
+			}
+		}
+		executor.executeScript("arguments[0].click();", activeRadioButton);
+		SaveButton.click();
+			
+	}
+	public void validateAssignStaffWithOutBatch(String emailid)
+	{
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		assignstaffEmailId.click();
+		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
+		ArrayList<String> StudtEmailids = new ArrayList<>();
+		for(WebElement element : emailidList)
+		{
+			StudtEmailids.add(element.getText());
+			
+		}
+		for(int i=0;i<StudtEmailids.size();i++)
+		{
+			if(StudtEmailids.get(i).equals(emailid))
+			{
+				 
+			     executor.executeScript("arguments[0].click();", emailidList.get(i));
+			}
+		}
+		
+		prognameDropDown.click();
+		List<WebElement>progList= driver.findElements(By.xpath("//li"));
+		executor.executeScript("arguments[0].click();", progList.get(2));
+		executor.executeScript("arguments[0].click();", activeRadioButton);
+		SaveButton.click();
+			
+	}
+	@FindBy(xpath = "//span[contains(text(),'Assign User')]//following-sibling::div//button")
+	WebElement assignSaffCloseBtn;
+	
+	public void validateAssignStaffClickCloseBtn(String emailid,String action) throws InterruptedException
+	{
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		emailDropDown.click();
+		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
+		ArrayList<String> StudtEmailids = new ArrayList<>();
+		for(WebElement element : emailidList)
+		{
+			StudtEmailids.add(element.getText());
+			
+		}
+		for(int i=0;i<StudtEmailids.size();i++)
+		{
+			if(StudtEmailids.get(i).equals(emailid))
+			{
+				 
+			     executor.executeScript("arguments[0].click();", emailidList.get(i));
+			}
+		}
+		
+		prognameDropDown.click();
+		List<WebElement>progList= driver.findElements(By.xpath("//li"));
+		progList.get(3).click();
+		batchDropDown.click();
+		Thread.sleep(500);
+		List<WebElement>batchList= driver.findElements(By.xpath("//li"));
+		executor.executeScript("arguments[0].click();", batchList.get(0));
+		executor.executeScript("arguments[0].click();", activeRadioButton);
+		if(action.equalsIgnoreCase("close"))
+		executor.executeScript("arguments[0].click();", assignSaffCloseBtn);
+		else
+			executor.executeScript("arguments[0].click();", CancelButton);
+		}
+	
+	@FindBy(xpath = "//span[contains(text(),'Assign Student')]//following-sibling::div//button")
+	WebElement assignStdCloseBtn;
+	public void validatepopIsClosed()
+	{
+		try {
+		Assert.assertFalse(assignStdCloseBtn.isEnabled(), "Assign student popup is still open");
+		}catch (NoSuchElementException  e) {
+			LoggerLoad.error("Assign staff alert was not found or is stale.");
+		}
+	}
+	
+	String assignStudentPopupWindow ="//div[@role='dialog']";
+//	String assignStaffPopupWindow = "//div[@class='ng-trigger ng-trigger-animation ng-tns-c132-7 p-fluid p-dialog p-component p-dialog-draggable p-dialog-resizable ng-star-inserted']";
+	
+	public void validatePopupAlertExistsForAssignSatff() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		try {
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(assignStudentPopupWindow)));
+		 	LoggerLoad.error("Assign staff alert disappeared successfully");
+		}catch (NoSuchElementException  e) {
+			LoggerLoad.error("Assign staff alert was not found or is stale.");
+		}
+	}
 }
