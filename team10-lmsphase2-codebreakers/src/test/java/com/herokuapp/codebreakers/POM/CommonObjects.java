@@ -22,14 +22,19 @@ public class CommonObjects {
 	WebElement passwordTxtBox;
 	@FindBy(xpath="//button[@id='login']")
 	WebElement loginBtn;
-	
+	@FindBy(xpath="//*[@id=\"program\"]/span[1]")
+	WebElement programLink;
+
 	public void loginUser() {
 		String username=ConfigReader.getProperty("username");
 		String password=ConfigReader.getProperty("password");
 		usernameTxtBox.sendKeys(username);
 		passwordTxtBox.sendKeys(password);
 		loginBtn.click();
-		
-		
+			
+	}
+	public void manageProgram()
+	{
+		programLink.click();
 	}
 }

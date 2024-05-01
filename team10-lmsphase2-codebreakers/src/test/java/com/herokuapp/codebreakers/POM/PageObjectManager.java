@@ -8,6 +8,7 @@ public class PageObjectManager {
 	LoginPageObjects loginobj;
 	DashBoardObjects dashboardobj;
 	CommonObjects commonobj;
+	ProgramPageObjects programobj;
 	
 	public PageObjectManager(WebDriver driver) {
 		super();
@@ -26,6 +27,11 @@ public class PageObjectManager {
 	public CommonObjects getCommonObjects() {
 		commonobj = new CommonObjects(driver);
 		return commonobj;
+	}
+	public ProgramPageObjects getProgramPageObjects() {
+		
+		programobj = new ProgramPageObjects(driver);
+		return programobj;
 	}
 	
 }
