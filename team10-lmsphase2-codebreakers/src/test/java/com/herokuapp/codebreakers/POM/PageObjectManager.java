@@ -7,6 +7,8 @@ public class PageObjectManager {
 	WebDriver driver;
 	LoginPageObjects loginobj;
 	DashBoardObjects dashboardobj;
+	CommonObjects commonobj;
+	BatchPageObjects batchobj;
 	
 	public PageObjectManager(WebDriver driver) {
 		super();
@@ -14,13 +16,21 @@ public class PageObjectManager {
 	}
 
 	public LoginPageObjects getLoginPageObjects() {
-		loginobj= new LoginPageObjects();
+		loginobj= new LoginPageObjects(driver);
 		return loginobj;
 	}
 	
 	public DashBoardObjects getDashBoardObjects() {
-		dashboardobj= new DashBoardObjects();
+		dashboardobj= new DashBoardObjects(driver);
 		return dashboardobj;
+	}
+	public CommonObjects getCommonObjects() {
+		commonobj = new CommonObjects(driver);
+		return commonobj;
+	}
+	public BatchPageObjects getBatchObjects() {
+		batchobj = new BatchPageObjects(driver);
+		return batchobj;
 	}
 	
 }
