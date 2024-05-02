@@ -55,7 +55,7 @@ public WebDriver driver;
 
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-            driver.manage().window().maximize();
+            driver.manage().window().minimize();
             driver.get(url);
         }
         return driver;

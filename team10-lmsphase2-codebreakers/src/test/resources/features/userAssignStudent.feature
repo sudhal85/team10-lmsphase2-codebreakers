@@ -21,7 +21,7 @@ Then Admin should see two radio button for Status
 Scenario: Form Submission for without any data
 Given Admin is in Assign Student details pop up page
 When Admin clicks Save button without entering any data
-Then Admin gets a Error message alert
+Then Admin gets a Error message alert for assign student
 
 Scenario Outline: Form Submission for without selecting program
 Given Admin is in Assign Student details pop up page
