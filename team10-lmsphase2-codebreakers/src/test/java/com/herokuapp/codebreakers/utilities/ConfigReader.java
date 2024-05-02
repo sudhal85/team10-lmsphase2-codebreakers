@@ -13,6 +13,7 @@ public static ThreadLocal<Properties> prop = new ThreadLocal<Properties>();
 	private static void init_prop() {		
 		prop.set(new Properties());
 		try {
+
 			InputStream fis = ConfigReader.class.getClassLoader().getResourceAsStream("config/global.properties");
 			prop.get().load(fis);
 		
