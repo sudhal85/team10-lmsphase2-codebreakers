@@ -34,7 +34,7 @@ Scenario Outline: Validate the Assign Staff form page without selecting Program 
  Then Admin gets a Error message alert as Program Name is required
      Examples: 
       | student | 
-      |team@gmail.com| 
+      |rRam@gmail.com| 
       
 Scenario Outline: Validate the Assign Staff form page without selecting batch
  Given Admin is in Assign Staff details pop up page
@@ -44,7 +44,7 @@ Scenario Outline: Validate the Assign Staff form page without selecting batch
 #
      Examples: 
      | student | 
-      |team@gmail.com| 
+      |rRam@gmail.com| 
 
 Scenario Outline: Validate the Assign Staff form page without selecting status
  Given Admin is in Assign Staff details pop up page
@@ -52,7 +52,7 @@ Scenario Outline: Validate the Assign Staff form page without selecting status
  Then Admin gets a Error message alert as Status is required
      Examples: 
       | student | 
-      |team@gmail.com|
+      |rRam@gmail.com|
       
 Scenario Outline: Form Submission by closing wihtout saving the Form
 Given Admin is in Assign Staff details pop up page
@@ -60,7 +60,7 @@ When Admin clicks "Close" Icon on Assign Staff form for "<student>"
 Then Assign Student popup window should be closed without saving
  Examples: 
   | student | 
-  |riairai@gmail.com| 
+  |rRam@gmail.com| 
 
  Scenario Outline: Form Submission by cancelling wihtout saving the Form
 Given Admin is in Assign Staff details pop up page
@@ -68,5 +68,5 @@ When Admin clicks "Cancel" Icon on Assign Staff form for "<student>"
 Then Assign Student popup window should be closed without saving
 	 Examples: 
 	  | student | 
-	  |team@gmail.com| 
+	  |rRam@gmail.com| 
 

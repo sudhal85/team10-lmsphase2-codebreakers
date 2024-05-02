@@ -29,7 +29,7 @@ When Admin clicks Save button without selecting Program Name for "<Student_Email
 Then Admin gets a Error message alert as Program Name is required
         Examples:
       |Student_EmailId |
-      |arna09@gmail.com|
+      |pooja@gmail.com|
 
 Scenario Outline: Form Submission for without selecting batch
 Given Admin is in Assign Student details pop up page
@@ -37,7 +37,7 @@ When Admin clicks Save button without giving BatchName  for "<Student_EmailId>"
 Then Admin gets a Error message alert as BatchName is required
      Examples:
       |Student_EmailId |
-      |amirkhan@gmail.com|
+      |pooja@gmail.com|
 
 Scenario Outline: Form Submission without status
 Given Admin is in Assign Student details pop up page
@@ -45,7 +45,7 @@ When Admin clicks Save button by giving  "<Student_EmailId>"
 Then Admin gets a Error message alert as Status is required
       Examples: 
       | Student_EmailId|              
-      |amirkhan@gmail.com| 			
+      |pooja@gmail.com| 			
     
       
      Scenario Outline: Form Submission by closing wihtout saving the Form
@@ -54,7 +54,7 @@ Then Admin gets a Error message alert as Status is required
     Then Assign Student popup window should be closed without saving
      Examples:
       | student |
-      |amirkhan@gmail.com|
+      |pooja@gmail.com|
      
       
      Scenario Outline: Form Submission by cancelling wihtout saving the Form
@@ -63,7 +63,7 @@ Then Admin gets a Error message alert as Status is required
     Then Assign Student popup window should be closed without saving
      Examples:
       |student |
-      |amirkhan@gmail.com|
+      |pooja@gmail.com|
  
 
 
