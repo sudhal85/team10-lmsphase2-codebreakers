@@ -52,8 +52,10 @@ public WebDriver driver;
             }
 
             driver.manage().deleteAllCookies();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
-//            driver.manage().window().maximize();
+
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+            driver.manage().window().maximize();
             driver.get(url);
         }
         return driver;

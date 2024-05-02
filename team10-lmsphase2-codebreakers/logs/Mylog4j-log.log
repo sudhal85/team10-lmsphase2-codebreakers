@@ -1,0 +1,121 @@
+[INFO ]2024-04-2701:58:03.178[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2702:00:24.017[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2702:02:08.585[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2702:02:11.429[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2702:02:11.431[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-The header Text
+[INFO ]2024-04-2702:02:14.670[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2702:02:14.671[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Text along with pagination
+[INFO ]2024-04-2702:02:20.534[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2702:02:20.536[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Text along with pagination
+[INFO ]2024-04-2703:16:33.082[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2703:16:36.547[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2703:16:36.562[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-The header Text
+[INFO ]2024-04-2703:16:45.047[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2703:16:45.049[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Text along with pagination
+[INFO ]2024-04-2703:16:51.103[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2703:16:51.104[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Text along with pagination
+[INFO ]2024-04-2703:16:57.790[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2703:17:04.317[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2703:17:07.940[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2703:17:16.230[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2703:17:22.717[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2703:17:26.568[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2711:33:16.250[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2711:45:38.770[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2714:49:49.201[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2714:49:52.848[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2715:06:44.343[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2715:13:40.847[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2715:16:35.645[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2715:20:57.160[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2715:30:36.554[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2716:55:59.310[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2718:45:32.524[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2816:46:22.230[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2818:54:36.714[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2819:17:09.570[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2819:51:13.770[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2819:54:52.919[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2819:56:53.704[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2820:03:35.827[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2820:08:21.289[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2820:11:03.662[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2821:02:43.543[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2821:09:48.617[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2821:11:06.713[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2821:12:49.644[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2821:43:27.872[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2821:44:15.112[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2822:40:22.903[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[ERROR]2024-04-2918:43:36.416[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-The element [[ChromeDriver: chrome on windows (b1b6c90a8cca1df9aad301d6f946103f)] -> id: Active] may not be visible. Exception is: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on windows (b1b6c90a8cca1df9aad301d6f946103f)] -> id: Active] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.18.1', revision: 'b1d3319b48'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.9'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 122.0.6261.129, chrome: {chromedriverVersion: 122.0.6261.128 (f18a44fedeb..., userDataDir: C:\Users\azam_\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64715}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64715/devtoo..., se:cdpVersion: 122.0.6261.129, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: b1b6c90a8cca1df9aad301d6f946103f
+[INFO ]2024-04-2920:01:15.951[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2920:01:18.608[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2920:01:18.612[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-The header Text
+[INFO ]2024-04-2920:01:22.850[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2920:01:22.851[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Text along with pagination
+[INFO ]2024-04-2920:01:31.463[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2920:01:31.465[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Text along with pagination
+[INFO ]2024-04-2920:01:40.891[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2920:01:47.118[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2920:01:53.539[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2920:02:00.858[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2920:02:05.354[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2920:02:12.932[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2920:02:19.387[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-2920:02:25.869[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-3021:56:57.905[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-3021:57:15.873[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-3021:57:31.094[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-3021:57:45.679[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-3021:58:04.830[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-04-3021:58:24.214[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0113:39:47.069[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0113:47:31.034[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0113:54:21.340[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:11:56.553[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:12:02.320[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:12:02.324[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-The header Text
+[INFO ]2024-05-0114:12:07.832[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:12:07.838[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Text along with pagination
+[INFO ]2024-05-0114:12:10.454[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:12:10.458[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Text along with pagination
+[INFO ]2024-05-0114:12:14.221[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:12:17.998[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:12:24.014[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:12:26.730[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:12:29.720[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:12:35.816[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:12:38.680[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:12:44.329[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:15:04.914[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:15:22.307[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:15:40.067[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:15:57.405[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:16:15.081[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:16:29.429[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:39:13.248[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:39:16.424[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:39:16.431[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-The header Text
+[INFO ]2024-05-0114:39:19.377[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:39:19.382[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Text along with pagination
+[INFO ]2024-05-0114:39:22.356[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:39:22.363[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Text along with pagination
+[INFO ]2024-05-0114:39:28.907[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:39:34.776[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:39:38.009[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:39:43.822[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:39:49.510[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:39:55.608[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:39:58.538[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:40:04.504[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:42:24.299[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:42:42.488[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:43:00.198[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:43:17.979[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:43:35.444[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
+[INFO ]2024-05-0114:43:55.359[main]com.herokuapp.codebreakers.utilities.LoggerLoad1)-Program page
