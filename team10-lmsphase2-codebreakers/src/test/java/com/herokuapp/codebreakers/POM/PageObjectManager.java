@@ -10,6 +10,9 @@ public class PageObjectManager {
 	DashBoardObjects dashboardobj;
 	CommonObjects commonobj;
 
+	ProgramPageObjects programobj;
+
+
 	BatchPageObjects batchobj;
 
 	UsersObjects usersobj;
@@ -34,9 +37,16 @@ public class PageObjectManager {
 		return commonobj;
 	}
 
+	public ProgramPageObjects getProgramPageObjects() {
+		
+		programobj = new ProgramPageObjects(driver);
+		return programobj;
+
+
 	public BatchPageObjects getBatchObjects() {
 		batchobj = new BatchPageObjects(driver);
 		return batchobj;
+
 	}
 	
 
