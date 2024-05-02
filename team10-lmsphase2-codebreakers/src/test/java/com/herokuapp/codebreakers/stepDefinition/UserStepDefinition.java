@@ -33,10 +33,7 @@ public class UserStepDefinition {
 		
 	}
 
-//	@Given("Admin is in manage user page")
-//	public void admin_is_in_manage_user_page() {
-//	    
-//	}
+
 	@Given("Admin is on dashboard page after Login and clicks User on the navigation bar")
 	public void admin_is_on_dashboard_page_after_login_and_clicks_user_on_the_navigation_bar() {
 		commonobj.loginUser();
@@ -45,7 +42,7 @@ public class UserStepDefinition {
 
 	
 
-	@When("Admin clicks on the {string} sort icon by {int} clicks")
+	@When("Admin clicks on the {string} sort icon by {int} clicks in Manage user")
 	public void admin_clicks_on_the_sort_icon_by_clicks(String columnHeading, Integer clickCount) {
 		usersobj.clickUserLink();
 		descendingOriginalList	= usersobj.sorting(columnHeading,clickCount);
@@ -62,7 +59,7 @@ public class UserStepDefinition {
 	}
 
 	
-	@When("Admin clicks on the {string} sort icon by {int} click")
+	@When("Admin clicks on the {string} sort icon by {int} click in Manage User")
 	public void admin_clicks_on_the_sort_icon_by_one_click(String columnHeading,Integer clickCount) {
 		usersobj.clickUserLink();
 		aescendingOriginalList =usersobj.sorting(columnHeading,clickCount);
@@ -90,12 +87,12 @@ public class UserStepDefinition {
 	}
 	
 //	Scenario: Validate No on Confirm Deletion Window
-	@Then("Admin can see the deletion alert disappears without deleting")
+	@Then("Admin can see the deletion alert disappears without deleting user")
 	public void admin_can_see_the_deletion_alert_disappears_without_deleting() {
 		System.out.println("Validated");
 	}
 //	Scenario: Validate Close icon on Confirm Deletion Window
-	@Then("Admin can see the deletion alert disappears without any changes")
+	@Then("Admin can see the deletion alert disappears without any changes in Manage Users")
 	public void admin_can_see_the_deletion_alert_disappears_without_any_changes() {
 		System.out.println("Validated");
 	}
@@ -104,18 +101,18 @@ public class UserStepDefinition {
 	public void admin_clicks_the_row_level_delete_icon_after_selecting_the_users_and_clicks_option(String deleteAction, List<String> userId) throws InterruptedException {
 		usersobj.singleUserDeleteInRow(deleteAction,userId);
 	}
-	@Then("Admin gets a message <Successful User Deleted> alert and do not see that user in the data table")
+	@Then("Admin gets a message <Successful User Deleted> alert and do not see that the user in the data table")
 	public void admin_gets_a_message_successful_user_deleted_alert_and_do_not_see_that_user_in_the_data_table() {
 	    System.out.println("success yes");
 	}
 //-------------------------------------------------- Multiple user delete
 //	Scenario:Validate Delete button on header enabled
-	@When("Admin clicks any checkbox in the data table")
+	@When("Admin clicks any checkbox in the data table in Manage User")
 	public void admin_clicks_any_checkbox_in_the_data_table() {
 		usersobj.clickCheckBox();
 	}
 
-	@Then("Admin should see common delete option enabled under header Manage Program")
+	@Then("Admin should see common delete option enabled under header in Manage Program")
 	public void admin_should_see_common_delete_option_enabled_under_header_manage_program() {
 		usersobj.validateHeaderDelete();
 	}
@@ -160,7 +157,7 @@ public class UserStepDefinition {
 		usersobj.clickSaveButton();
 	}
 
-	@Then("Admin gets a Error message alert")
+	@Then("Admin gets a Error message alert for assign student")
 	public void admin_gets_a_error_message_alert() {
 		usersobj.validateEmptyFormErrMsgForStudent();
 	}
