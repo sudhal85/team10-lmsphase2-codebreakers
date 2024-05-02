@@ -3,6 +3,7 @@ package com.herokuapp.codebreakers.utilities;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigReader {
@@ -12,7 +13,8 @@ public static ThreadLocal<Properties> prop = new ThreadLocal<Properties>();
 	private static void init_prop() {		
 		prop.set(new Properties());
 		try {
-			FileInputStream fis = new FileInputStream("config/global.properties");
+			//FileInputStream fis = new FileInputStream("config/global.properties");
+			InputStream fis = ConfigReader.class.getClassLoader().getResourceAsStream("config/global.properties");
 			prop.get().load(fis);
 		
 		} catch (IOException e) {

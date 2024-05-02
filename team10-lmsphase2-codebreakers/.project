@@ -11,11 +11,6 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.m2e.core.maven2Builder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
 			<name>cucumber.eclipse.builder.stepdefinition</name>
 			<arguments>
 			</arguments>
@@ -25,10 +20,22 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>cucumber.eclipse.nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/test/resources/testData/Team10_lms_ui.xlsx</name>
+			<type>1</type>
+			<location>C:/Users/kswat/Desktop/Team10_lms_ui.xlsx</location>
+		</link>
+	</linkedResources>
 </projectDescription>
