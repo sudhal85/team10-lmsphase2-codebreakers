@@ -2,7 +2,6 @@ package com.herokuapp.codebreakers.POM;
 
 import java.util.List;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import com.herokuapp.codebreakers.utilities.Constants;
 import com.herokuapp.codebreakers.utilities.ElementUtils;
@@ -144,6 +142,18 @@ public class BatchPageObjects
 	
 	@FindBy(xpath="//table//tbody//tr")
 	WebElement batchSearch;
+	
+	@FindBy(xpath="//input[@type='checkbox']")
+	WebElement batchCheckbox;
+	
+	@FindBy(xpath="//span[@class='p-button-icon pi pi-trash'][1]")
+	WebElement batchHeaderDeleteBox;
+	
+	@FindBy(xpath="//div[@class='p-checkbox-box p-component']")
+	WebElement batchSingleCheckBox;
+	
+	@FindBy(xpath="//p-tableheadercheckbox/div/div[2]")
+	WebElement batchCommonCheckBox;
 	
 	public String getDashboardTitle()
 	{
@@ -429,7 +439,6 @@ public class BatchPageObjects
 		System.out.println("============The batch no of classes error message is: "+batchNoOfClassesErrMsg.getText());
 		return batchNoOfClassesErrMsg;
 	}
-
 	public void clickOnBatch()
 	{
 		batchBtn.click();
@@ -549,9 +558,40 @@ public class BatchPageObjects
 		return batchSearch;
 	}
 	
+	public Boolean verifyCheckBoxeDisabled()
+	{
+		boolean isselected = false;
+		isselected = batchCheckbox.isSelected();
+		
+		WebElement table = driver.findElement(By.xpath ("//table[@role='grid']"));
 
+		// Find all rows in the table
+		List<WebElement> rows = table.findElements(By.xpath("//table//tbody//tr"));
+		for (WebElement row : rows) 
+		{
+			if(!isselected)
+			{
+				System.out.println("===========The checkbox is not selected");
+			}
+		}return isselected;
+	}
+	
+	public WebElement batchHeaderDeleteIcon()
+	{
+		ElementUtils.explicitPageWait(driver);
+		return batchHeaderDeleteBox;
+	}
+	
+	public void batchClickOnCheckbox()
+	{
+		ElementUtils.explicitPageWait(driver);
+		batchSingleCheckBox.click();
+	}
+	
+	public void batchClickCommonCheckbox()
+	{
+		ElementUtils.explicitPageWait(driver);
+		batchCommonCheckBox.click();
+	}
+	
 }
-
-
-
-
