@@ -8,7 +8,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
 
 
-			features = "src/test/resources/features/",
+			features = "src/test/resources/features/program.feature",
 
 			glue = {"com.herokuapp.codebreakers.stepDefinition","com.herokuapp.codebreakers.hooks"},
 			monochrome = true,

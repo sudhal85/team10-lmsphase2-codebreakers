@@ -226,7 +226,7 @@ public class UserStepDefinition {
 //	Scenario: Form Submission for without any data
 	@Given("Admin is in Assign Staff details pop up page")
 	public void admin_is_in_assign_staff_details_pop_up_page() throws InterruptedException {
-		Thread.sleep(Duration.ofSeconds(2));
+		Thread.sleep(1000);
 		usersobj.clickAssignStaffLink();
 	}
 

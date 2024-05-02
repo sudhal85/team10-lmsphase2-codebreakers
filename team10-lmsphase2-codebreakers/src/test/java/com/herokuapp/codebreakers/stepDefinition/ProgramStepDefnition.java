@@ -261,7 +261,7 @@ programobj.newProgramClick();
 		public void enter_all_the_required_fields_with_valid_values_and_click_save_button_and(String sheetname, Integer rownumber) throws InvalidFormatException, IOException {
 		    
 			 ExcelReader reader = new ExcelReader();
-		   List<Map<String, String>> testdata=reader.getData("C:\\Users\\azam_\\git\\team10-lmsphase2-codebreakers\\team10-lmsphase2-codebreakers\\src\\test\\resources\\Exceldata\\data.xlsx", sheetname);
+		   List<Map<String, String>> testdata=reader.getData(".\\src\\test\\resources\\Exceldata\\data.xlsx", sheetname);
 		String pname = testdata.get(rownumber).get("programname");
 		String pDesc = testdata.get(rownumber).get("programdescription");
 			programobj.savepgmFromExcel(pname, pDesc);
@@ -271,7 +271,7 @@ programobj.newProgramClick();
 		@Then("Admin gets a message Successful Program Created Successfully alert and able to see the new program added in the data table {string} and {int}")
 		public void admin_gets_a_message_successful_program_created_successfully_alert_and_able_to_see_the_new_program_added_in_the_data_table_and(String sheetname, Integer rownumber) throws InvalidFormatException, IOException {
 			ExcelReader reader = new ExcelReader();
-			   List<Map<String, String>> testdata=reader.getData("C:\\Users\\azam_\\git\\team10-lmsphase2-codebreakers\\team10-lmsphase2-codebreakers\\src\\test\\resources\\Exceldata\\data.xlsx", sheetname);
+			   List<Map<String, String>> testdata=reader.getData(".\\src\\test\\resources\\Exceldata\\data.xlsx", sheetname);
 		String pname= testdata.get(rownumber).get("programname");
 		programobj.validateProgramAdded(pname);
 		

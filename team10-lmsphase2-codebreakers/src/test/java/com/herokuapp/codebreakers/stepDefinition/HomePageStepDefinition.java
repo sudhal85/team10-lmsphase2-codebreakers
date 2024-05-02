@@ -158,7 +158,7 @@ public  HomePageStepDefinition(TestSetup testsetup){
     //    }
 	
 	ExcelReader excelReader = new ExcelReader();
-	  List<Map<String,String>> testData = excelReader.getData("C:\\Users\\kswat\\Desktop\\Team10_lms_ui.xlsx", sheetName);
+	  List<Map<String,String>> testData = excelReader.getData("./src/test/resources/TestData/Team10_lms_ui.xlsx", sheetName);
 	  String name = testData.get(rownumber).get("Username");
 	  String pwd = testData.get(rownumber).get("Password");	
 	  homeobj.entercredentials(name, pwd);
@@ -182,7 +182,7 @@ public  HomePageStepDefinition(TestSetup testsetup){
 	@When("Admin enter invalid username from {string} and valid password {int} and clicks login button")
 	public void admin_enter_invalid_username_from_and_valid_password_and_clicks_login_button(String sheetName, int rownumber)throws InvalidFormatException, IOException, org.apache.poi.openxml4j.exceptions.InvalidFormatException  {
 		ExcelReader excelReader = new ExcelReader();
-		  List<Map<String,String>> testData = excelReader.getData("C:\\Users\\kswat\\Desktop\\Team10_lms_ui.xlsx", sheetName);
+		  List<Map<String,String>> testData = excelReader.getData("./src/test/resources/TestData/Team10_lms_ui.xlsx", sheetName);
 		  String name = testData.get(rownumber).get("Username");
 		  String pwd = testData.get(rownumber).get("Password");	
 		  homeobj.entercredentials(name, pwd);
@@ -193,7 +193,7 @@ public  HomePageStepDefinition(TestSetup testsetup){
 	@When("Admin enter valid username from {string} invalid password {int} and clicks login button")
 	public void admin_enter_valid_username_from_invalid_password_and_clicks_login_button(String sheetName, Integer rownumber) throws org.apache.poi.openxml4j.exceptions.InvalidFormatException, IOException {
 		ExcelReader excelReader = new ExcelReader();
-		  List<Map<String,String>> testData = excelReader.getData("C:\\Users\\kswat\\Desktop\\Team10_lms_ui.xlsx", sheetName);
+		  List<Map<String,String>> testData = excelReader.getData("./src/test/resources/TestData/Team10_lms_ui.xlsx", sheetName);
 		  String name = testData.get(rownumber).get("Username");
 		  String pwd = testData.get(rownumber).get("Password");	
 		  homeobj.entercredentials(name, pwd);
