@@ -2,7 +2,7 @@ package com.herokuapp.codebreakers.POM;
 
 import org.openqa.selenium.WebDriver;
 
-<<<<<<< HEAD
+
 import com.herokuapp.codebreakers.utilities.ExcelReader;
 
 
@@ -11,6 +11,7 @@ public class PageObjectManager {
 	WebDriver driver;
 	HomePageObjects homeobj;
 	DashBoardObjects dashboardobj;
+	LoginPageObjects loginobj;
 
 	ExcelReader excelreaderobj;
 	CommonObjects commonobj;
@@ -59,6 +60,7 @@ public class PageObjectManager {
 		
 		programobj = new ProgramPageObjects(driver);
 		return programobj;
+	}
 
 
 	public BatchPageObjects getBatchObjects() {
