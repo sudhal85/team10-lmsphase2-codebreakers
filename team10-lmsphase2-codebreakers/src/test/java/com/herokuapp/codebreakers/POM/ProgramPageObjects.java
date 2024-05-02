@@ -75,11 +75,11 @@ WebDriver driver;
 	@FindBy(xpath = "//button[@class='p-button-rounded p-button-danger p-button p-component p-button-icon-only'] ")   
 	WebElement rowDeleteButton;
 	@FindBy(xpath="//span[contains(text(),'Yes')]/..")
-    private WebElement deleteYesBtn;
+     WebElement deleteYesBtn;
 	@FindBy(xpath="//span[contains(text(),'No')]/..")
-   private WebElement deleteNoBtn;
+    WebElement deleteNoBtn;
 	@FindBy(xpath="//span[contains(text(),'Confirm')]/..")
-   private WebElement deleteConfirmMsg;
+    WebElement deleteConfirmMsg;
 	@FindBy(xpath = "//div[@class='ng-trigger ng-trigger-animation ng-tns-c133-4 p-dialog p-confirm-dialog p-component ng-star-inserted']") 
 		WebElement deleteAlertBoxElement;
 	@FindBy(xpath="//span[@class='pi pi-times ng-tns-c133-4']/..")
@@ -87,7 +87,7 @@ WebDriver driver;
 	@FindBy(xpath="//span[@class=\"p-confirm-dialog-message ng-tns-c133-4\"]")
 	WebElement confirmMessage;
 	@FindBy(xpath="//div[@class='p-toast-detail ng-tns-c90-10']/..")
-	private WebElement msgDeleteSuccess;
+	 WebElement msgDeleteSuccess;
 	//Pagination
 	@FindBy(xpath="/html/body/app-root/app-program/div/mat-card/mat-card-content/p-table/div/p-paginator/div/button[3]")
 	WebElement nextbutton;
@@ -660,12 +660,20 @@ String nameString=	programName.getText();
 		 List<String> pageItems = itemlist.stream().map(a->a.getText().toLowerCase()).collect(Collectors.toList());
 		 originalList.addAll(pageItems);
 		 ElementUtils.waitForElementVisibility(driver, page_next, Constants.EXPLICIT_ELEMENT_WAIT_TIME);
-		 if(page_next.isEnabled()) {
-			 page_next.click();
-		 } else {
-			 break;
-		 }
-		 } while (true);
+	boolean result=false;
+	
+	    try {
+	        if (result = page_next.isEnabled()) {
+	            page_next.click();
+	        } else {
+	            break;
+	        }
+	    } catch (Exception e) {
+	        // Handle the exception here
+	        System.out.println("An exception occurred: " + e.getMessage());
+	        break;
+	    }
+	} while (true);
 		
 		 return originalList;
 }

@@ -216,14 +216,14 @@ public class ProgramStepDefnition {
 	//String programDesc = testdata.get(rownumber).get("programdescription");
 		
 	List<List<String>> valuesList = data.cells();
-	driver.findElement(By.xpath("\\input[@id='programName']")).sendKeys(valuesList.get(0).get(0));
-	driver.findElement(By.xpath("\\input[@id='programDescription']")).sendKeys(valuesList.get(0).get(1));
+	driver.findElement(By.xpath("//input[@id='programName']")).sendKeys(valuesList.get(0).get(0));
+	driver.findElement(By.xpath("//input[@id='programDescription']")).sendKeys(valuesList.get(0).get(1));
 	programobj.onlyStatus();
 	programobj.clickSaveBtn();
 programobj.clickcancel();
 programobj.newProgramClick();
-	driver.findElement(By.xpath("\\input[@id='programName']")).sendKeys(valuesList.get(1).get(0));
-	driver.findElement(By.xpath("\\input[@id='programDescription']")).sendKeys(valuesList.get(1).get(1));
+	driver.findElement(By.xpath("//input[@id='programName']")).sendKeys(valuesList.get(1).get(0));
+	driver.findElement(By.xpath("//input[@id='programDescription']")).sendKeys(valuesList.get(1).get(1));
 	programobj.onlyStatus();
 	programobj.clickSaveBtn();
 	
